@@ -61,7 +61,7 @@ def cal():
             orderBy='startTime').execute()
         events = events_result.get('items', [])
 
-        return render_template('calendar.html', name=events)
+        return render_template('calendar.html', events=events)
 
 
 @app.route('/oauth2callback')
