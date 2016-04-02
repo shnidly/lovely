@@ -8,9 +8,10 @@
     <!--external css-->
     
     <link href="css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
   </head>
-
-  <body onload="setTimeout(heart, 1000)">
+  
+  <body>
   <!-- container section start -->
   <section id="container" class="">
      
@@ -28,8 +29,15 @@
 
       <!--sidebar start-->
       <aside>
-          <div id="sidebar"  class="nav-collapse ">
+          <div id="sidebar">
               <!-- sidebar menu start-->
+
+              <div id="options">
+                <a href="#">All</a>
+                <a href="#">Friends</a>
+                <a href="#">Family</a>
+              </div>
+
               <ul class="sidebar-menu">                
                   <li class="active">
                       <a class="" href="index.html">
@@ -37,24 +45,15 @@
                           <span class="glyphicon glyphicon-heart" style="color: #462066"></span>
                       </a>
                   </li>
-				  <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <i class="icon_document_alt"></i>
-                          <span>Person 2</span>
-                      </a>
-                  </li>   
-
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_document_alt"></i>
-                          <span>Person 3</span>
+                          <span>Person 2</span>
                       </a>
                   </li>
 
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_document_alt"></i>
-                          <span>Person 4</span>
+                          <span>Person 3</span>
                       </a>
                   </li>         
                   </ul>   
@@ -62,6 +61,8 @@
                   <button type="button" class="btn btn-default" aria-label="Left Align">
                      <span class="glyphicon glyphicon-plus" aria-hidden="true" id="plus"> Add Contact</span>
                   </button>
+
+                  <div class="round-button" alt="add contact"><span class="glyphicon glyphicon-plus"></span></div>
               </div>
               <!-- sidebar menu end-->
           </div>
@@ -86,8 +87,8 @@
                                     <b>Email: </b> nonexistant<br>
 
                                     <p>
-
-                                <img src="heart.gif" id="heart" height="40%" width="40%" align="right">
+
+                               <div class="heart pulse"><span class="glyphicon glyphicon-heart"></span></div>
                                 </div>
                             </div>
                         </div>
@@ -104,12 +105,7 @@
                               <div class="col-lg-8 task-progress pull-left">
                                   <h1>When To Contact Grandma</h1>                                  
                               </div>
-                              <div class="col-lg-4">
-                                <span class="profile-ava pull-right">
-                                        <img alt="" class="simple" src="img/avatar1_small.jpg">
-                                        User 1
-                                </span>                                
-                              </div>
+                              
                             </div>
                           </div>
 
@@ -150,6 +146,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/heart.js"></script>
 
   </body>
 </html>
