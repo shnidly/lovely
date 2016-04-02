@@ -9,7 +9,6 @@ import httplib2
 # OAuth imports
 from oauth2client import client
 # Other imports
-import json
 import datetime
 # Flask imports
 from flask import Flask, render_template, session, request, redirect, url_for
@@ -20,8 +19,7 @@ CLIENT_ID = "788402987571-lkij3nh54tlp35g82h3b94ktj6gl529g.apps.googleuserconten
 CLIENT_SECRET = '0EXqx_OQbJYRw-TavXBftK60'
 
 
-@app.route('/')
-def index():
+def is_user_logged_into_google():
     # Check if credentials exist within session.
     if 'credentials' not in session:
         return redirect(url_for('oauth2callback'))
@@ -31,6 +29,22 @@ def index():
 
     # If the credentials are expired, they're might as well nonexistent!
     if credentials.access_token_expired:
+        return None
+    else:
+        return credentials
+
+
+@app.route('/')
+@app.route('/index')
+def index():
+    return render_template('index.html')
+
+
+@app.route('/cal')
+def cal():
+    credentials = is_user_logged_into_google()
+
+    if credentials is None:
         return redirect(url_for('oauth2callback'))
     else:
         http_auth = credentials.authorize(httplib2.Http())
@@ -50,7 +64,7 @@ def index():
             orderBy='startTime').execute()
         events = events_result.get('items', [])
 
-        return render_template('index.html', events=events)
+        return render_template('calendar.html', events=events)
 
 
 @app.route('/oauth2callback')
