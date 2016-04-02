@@ -19,7 +19,19 @@ CLIENT_ID = "788402987571-lkij3nh54tlp35g82h3b94ktj6gl529g.apps.googleuserconten
 CLIENT_SECRET = '0EXqx_OQbJYRw-TavXBftK60'
 
 
-def is_user_logged_into_google():
+@app.route('/')
+@app.route('/index')
+def index():
+    return render_template('index.html')
+
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
+
+
+@app.route('/cal')
+def cal():
     # Check if credentials exist within session.
     if 'credentials' not in session:
         return redirect(url_for('oauth2callback'))
@@ -29,25 +41,10 @@ def is_user_logged_into_google():
 
     # If the credentials are expired, they're might as well nonexistent!
     if credentials.access_token_expired:
-        return None
-    else:
-        return credentials
-
-
-@app.route('/')
-@app.route('/index')
-def index():
-    return render_template('index.html')
-
-
-@app.route('/cal')
-def cal():
-    credentials = is_user_logged_into_google()
-
-    if credentials is None:
         return redirect(url_for('oauth2callback'))
     else:
-        http_auth = credentials.authorize(httplib2.Http())
+        http_auth = httplib2.Http()
+        http_auth = credentials.authorize(http_auth)
         service = apiclient.discovery.build('calendar', 'v3', http_auth)
 
         '''
@@ -64,7 +61,7 @@ def cal():
             orderBy='startTime').execute()
         events = events_result.get('items', [])
 
-        return render_template('calendar.html', events=events)
+        return render_template('calendar.html', name=events)
 
 
 @app.route('/oauth2callback')
