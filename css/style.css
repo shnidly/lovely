@@ -211,13 +211,10 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 }
 
 
-#pluspad {
-    padding-top: 10px;
-    text-align: center;
-}
-
-#plus{
-    font-family: 'Lato', sans-serif;
+#plus {
+    padding-top: 20px;
+    padding-left: 200px;
+    text-align: right;
 }
 
 

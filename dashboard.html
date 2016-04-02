@@ -33,12 +33,12 @@
               <!-- sidebar menu start-->
 
               <div id="options">
-                <a href="#">All</a>
-                <a href="#">Friends</a>
-                <a href="#">Family</a>
+                <a href="#" onclick="navbar()">All</a>
+                <a href="#" onclick="navbar()">Friends</a>
+                <a href="#" onclick="navbar()">Family</a>
               </div>
 
-              <ul class="sidebar-menu">                
+              <ul class="sidebar-menu" id="nav">                
                   <li class="active">
                       <a class="" href="index.html">
                           <span>Person 1</span>
@@ -57,12 +57,9 @@
                       </a>
                   </li>         
                   </ul>   
-                  <div id="pluspad">
-                  <button type="button" class="btn btn-default" aria-label="Left Align">
-                     <span class="glyphicon glyphicon-plus" aria-hidden="true" id="plus"> Add Contact</span>
-                  </button>
+                  <div id="plus">
 
-                  <div class="round-button" alt="add contact"><span class="glyphicon glyphicon-plus"></span></div>
+                  <a href="#"><div class="round-button" alt="add contact"><span class="glyphicon glyphicon-plus"></span></div></a>
               </div>
               <!-- sidebar menu end-->
           </div>
@@ -146,7 +143,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/heart.js"></script>
+    <script src="js/navbar.js"></script>
 
   </body>
 </html>
