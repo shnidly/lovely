@@ -3,49 +3,56 @@
 
 {% block head %}
     {{ super() }}
+    <script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
 {% endblock %}
 
 {% block content %}
     <!--sidebar start-->
-    <aside>
-        <div id="sidebar"  class="nav-collapse ">
-            <!-- sidebar menu start-->
-            <ul class="sidebar-menu">
-                <li class="active">
-                    <a class="" href="index.html">
-                        <span>Person 1</span>
-                        <span class="glyphicon glyphicon-heart" style="color: #462066"></span>
-                    </a>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="icon_document_alt"></i>
-                        <span>Person 2</span>
-                    </a>
-                </li>
-
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="icon_document_alt"></i>
-                        <span>Person 3</span>
-                    </a>
-                </li>
-
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="icon_document_alt"></i>
-                        <span>Person 4</span>
-                    </a>
-                </li>
-            </ul>
-            <div id="pluspad">
-                <button type="button" class="btn btn-default" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true" id="plus"> Add Contact</span>
-                </button>
-            </div>
-            <!-- sidebar menu end-->
+    <div id="sidebar"  class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <div id="options">
+            <a href="#" onclick="navbar()">All</a>
+            <a href="#" onclick="navbar()">Friends</a>
+            <a href="#" onclick="navbar()">Family</a>
         </div>
-    </aside>
+
+        <ul class="sidebar-menu" id="nav">
+            <li class="active">
+                <a class="" href="index.html">
+                    <span>Person 1</span>
+                    <span class="glyphicon glyphicon-heart" style="color: #462066"></span>
+                </a>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;" class="">
+                    <i class="icon_document_alt"></i>
+                    <span>Person 2</span>
+                </a>
+            </li>
+
+            <li class="sub-menu">
+                <a href="javascript:;" class="">
+                    <i class="icon_document_alt"></i>
+                    <span>Person 3</span>
+                </a>
+            </li>
+
+            <li class="sub-menu">
+                <a href="javascript:;" class="">
+                    <i class="icon_document_alt"></i>
+                    <span>Person 4</span>
+                </a>
+            </li>
+        </ul>
+        <div id="plus">
+            <a href="#">
+                <div class="round-button" alt="Add Contact">
+                    <p style="position: relative; top: 50%; transform: translateY(-50%);">+</p>
+                </div>
+            </a>
+        </div>
+        <!-- sidebar menu end-->
+    </div>
     <!--sidebar end-->
 
     <!--main content start-->
@@ -53,7 +60,6 @@
         <section class="wrapper">
             <!--overview start-->
 
-            <div class="col-lg-8">
                 <section class="panel">
                     <div class="panel-body progress-panel">
                         <div class="row">
@@ -66,16 +72,13 @@
                                 <b>Email: </b> nonexistant<br>
 
                                 <p>
-                                    <img src="../static/img/heart.gif" id="heart" height="40%" width="40%" align="right">
-                                </p>
+                                    
+                                <div class="heart pulse"><span class="glyphicon glyphicon-heart"></span></div>
                             </div>
                         </div>
                     </div>
                 </section>
-            </div>
 
-
-            <div class="col-lg-8">
                 <!--Project Activity start-->
                 <section class="panel">
                     <div class="panel-body progress-panel">
@@ -84,12 +87,7 @@
                             <div class="col-lg-8 task-progress pull-left">
                                 <h1>When To Contact Grandma</h1>
                             </div>
-                            <div class="col-lg-4">
-                                <span class="profile-ava pull-right">
-                                        <img alt="" class="simple" src="../static/img/avatar1_small.jpg">
-                                        User 1
-                                </span>
-                            </div>
+
                         </div>
                     </div>
 
@@ -118,9 +116,14 @@
                 </section>
                 <!--Project Activity end-->
             </div>
-            </section>
         </section>
+
+        <!--main content end-->
+    </section>
     <!--main content end-->
     </div>
 {% endblock %}
 
+{% block footer %}
+    <script src="js/navbar.js"></script>
+{% endblock %}

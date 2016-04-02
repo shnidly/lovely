@@ -1,17 +1,16 @@
 # https://github.com/mimming/python-flask-google-api-starter/blob/master/cal.py
 # https://developers.google.com/api-client-library/python/auth/web-app#example
 
-# Required for Heroku
-import os
-# Google API imports
+import os  # Required for Heroku
+
 import apiclient
 import httplib2
-# OAuth imports
 from oauth2client import client
-# Other imports
+
 import datetime
-# Flask imports
+
 from flask import Flask, render_template, session, request, redirect, url_for
+import db_comm
 
 app = Flask(__name__)
 
