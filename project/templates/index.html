@@ -6,9 +6,12 @@
 </head>
 <body>
     <p>Heroku</p>
-    {% if calendar_list %}
+    {% if events %}
+        {% for event in events %}
+            {{ event['start'].get('dateTime', event['start'].get('date')) }}: {{ event['summary'] }}<br />
+        {% endfor %}
     {% else %}
-        <p>{{ calendar_list }}</p>
+        <p>Nothing received.</p>
     {% endif %}
 </body>
 </html>
