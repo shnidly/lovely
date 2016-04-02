@@ -21,7 +21,8 @@ def login():
     flow = OAuth2WebServerFlow(client_id=CLIENT_ID,
                                client_secret=CLIENT_SECRET,
                                scope='https://www.googleapis.com/auth/calendar',
-                               redirect_uri='http://localhost:5000/oauth2callback',
+                               redirect_uri='https://lovely-hackprinceton.herokuapp.com:'
+                                            + os.environ.get('PORT', 5000) + '/oauth2callback',
                                approval_prompt='force',
                                access_type='offline')
 
@@ -80,6 +81,7 @@ if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
     app.secret_key = "Love.ly"
+    app.debug(True)
     app.run(host='0.0.0.0', port=port)
 
 
