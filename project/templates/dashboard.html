@@ -8,16 +8,16 @@
 
 {% block content %}
     <!--sidebar start-->
-    <div id="sidebar"  class="nav-collapse ">
+    <div id="sidebar">
         <!-- sidebar menu start-->
-        <div id="options">
+        <div id="sort-tabs">
             <a href="#" onclick="navbar()">All</a>
             <a href="#" onclick="navbar()">Friends</a>
             <a href="#" onclick="navbar()">Family</a>
         </div>
 
         <ul class="sidebar-menu" id="nav">
-            <li class="active">
+            <!-- <li class="active">
                 <a class="" href="index.html">
                     <span>Person 1</span>
                     <span class="glyphicon glyphicon-heart" style="color: #462066"></span>
@@ -28,21 +28,16 @@
                     <i class="icon_document_alt"></i>
                     <span>Person 2</span>
                 </a>
-            </li>
+            </li> -->
 
-            <li class="sub-menu">
-                <a href="javascript:;" class="">
+            {% for contact in contacts %}
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
                     <i class="icon_document_alt"></i>
-                    <span>Person 3</span>
-                </a>
-            </li>
-
-            <li class="sub-menu">
-                <a href="javascript:;" class="">
-                    <i class="icon_document_alt"></i>
-                    <span>Person 4</span>
-                </a>
-            </li>
+                    <span>contact.</span>
+                    </a>
+                </li>
+            {% endfor %}
         </ul>
         <div id="plus">
             <a href="#">
@@ -67,9 +62,9 @@
                                 <img src="../static/img/no.jpg" height="50%" width="50%"> </div>
                             <div class="col-md-6">
                                 <h1>Grandma</h1>
-                                <b>Nickname: </b> she has one?<br>
-                                <b>Phone: </b> 555-555-5555<br>
-                                <b>Email: </b> nonexistant<br>
+                                <b>Nickname:</b> she has one?<br>
+                                <b>Phone:</b> 555-555-5555<br>
+                                <b>Email:</b> nonexistant<br>
 
                                 <p>
                                     

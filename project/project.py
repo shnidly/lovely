@@ -10,9 +10,12 @@ from oauth2client import client
 import datetime
 
 from flask import Flask, render_template, session, request, redirect, url_for
-import db_comm
+from flask.ext.pymongo import PyMongo
+
+import db_manager
 
 app = Flask(__name__)
+mongo = PyMongo(app)
 
 CLIENT_ID = "788402987571-lkij3nh54tlp35g82h3b94ktj6gl529g.apps.googleusercontent.com"
 CLIENT_SECRET = '0EXqx_OQbJYRw-TavXBftK60'
@@ -26,7 +29,26 @@ def index():
 
 @app.route('/dashboard')
 def dashboard():
+    cursor = mongo.db.contacts.find()
+
+    contact_dict = {}  # List
+
+    for contact in cursor:
+        contact_dict[str(contact._id)] = contact.name
+
     return render_template('dashboard.html')
+
+
+@app.route('/generate')
+def generate():
+    mongo.db.contacts.remove({})
+    print(mongo.db.contacts.insert_many([
+        db_manager.gen_new_user('John Appleseed', 234567890, -5),
+        db_manager.gen_new_user('Anne Smith', 8003234555, -8),
+        db_manager.gen_new_user('Steven Berg', 9463112232, +4.75),
+        db_manager.gen_new_user('Elora Szeto', 7163831103, 0),
+        db_manager.gen_new_user('Eric Sayer', 1234569999, 2)]))
+    return redirect(url_for('dashboard'))
 
 
 @app.route('/cal')
