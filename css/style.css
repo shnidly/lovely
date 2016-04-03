@@ -12,10 +12,9 @@ body {
 }
 h1,h2,h3,h4,h5{
     font-weight: 300;
+    padding-left: 10px;
 }
-label{
-    font-weight: 300;   
-}
+
 ul li {
     list-style: none;
 }
@@ -138,7 +137,8 @@ ul.sidebar-menu li.active a i {
 /*main content*/
 
 #main-content {
-    margin-left: 280px;
+    margin-left: 290px;
+    width:70%;
 }
 
 .header, .footer {
@@ -320,4 +320,35 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     box-shadow: 0 0 3px gray;
     font-size:20px;
     font-weight:bold;
+}
+
+#date-time {
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 15px;
+}
+
+#history {
+    padding-left: 30px;
+}
+
+#mainimg {
+    width:100%;
+    text-align: center;
+}
+
+#img {
+    display: table-cell; 
+    text-align: center;
+}
+
+#inside {
+    padding-left: 15px;
+    padding-bottom: 10px;
+}
+
+#center {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 20px;
 }
