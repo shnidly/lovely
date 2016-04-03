@@ -12,12 +12,12 @@ def gen_new_user(username, password, email):
     }
 
 
-def gen_new_contact(name, phone_num, time_zone, next_time_to_contact):
+def gen_new_contact(owner, name, phone_num, time_zone):
     return {
+        'owner': owner,
         'name': name,
         'time': {
-            'last-time-since-contact': 0,
-            'next-time-to-contact': next_time_to_contact
+            'last-time-since-contact': 0
         },
         'holidays': {},
         'profile': {

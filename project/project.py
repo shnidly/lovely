@@ -38,7 +38,7 @@ def register_form():
     email = request.form['email']
     password = request.form['password']
 
-    print(mongo.db.users.insert_one(db_manager.gen_new_user(username, email, password)))
+    print(mongo.db.users.insert_one(db_manager.gen_new_user(username, password, email)))
 
     session['username'] = username
     return redirect(url_for('dashboard'))
@@ -46,7 +46,27 @@ def register_form():
 
 @app.route('/login')
 def login():
+    if 'username' in session:
+        return redirect(url_for('dashboard'))
+
     return render_template('login.html')
+
+
+@app.route('/login_form', methods=['POST'])
+def login_form():
+    username = request.form['username']
+    password = request.form['password']
+
+    cursor = mongo.db.users.find({"username": username})
+
+    for user in cursor:
+        print(user)
+
+        if user['password'] == password:
+            session['username'] = username
+            return redirect(url_for('dashboard'))
+
+    return redirect(url_for('index'))
 
 
 @app.route('/add')
@@ -57,26 +77,39 @@ def add():
 @app.route('/dashboard')
 def dashboard():
     if 'username' in session:
-        return redirect(url_for('index'))
+        cursor = mongo.db.contacts.find({'owner': session['username']})
 
-    cursor = mongo.db.users.find({'username': session['username']})
+        contact_dict = {}  # List
+        for contact in cursor:
+            print(contact)
+            contact_dict[str(contact['_id'])] = contact['name']
 
-    contact_dict = {}  # List
-    for contact in cursor:
-        contact_dict[str(contact['_id'])] = contact['name']
+        return render_template('dashboard.html', username=session['username'], contact_dict=contact_dict)
 
-    return render_template('dashboard.html', contact_dict=contact_dict)
+    return redirect(url_for('index'))
 
 
 @app.route('/wipedb')
-def generate():
+def wipedb():
+    mongo.db.users.remove({})
     mongo.db.contacts.remove({})
-    # print(mongo.db.contacts.insert_many([
-    #     db_manager.gen_new_contact('John Appleseed', 234567890, -5),
-    #     db_manager.gen_new_contact('Anne Smith', 8003234555, -8),
-    #     db_manager.gen_new_contact('Steven Berg', 9463112232, +4.75),
-    #     db_manager.gen_new_contact('Elora Szeto', 7163831103, 0),
-    #     db_manager.gen_new_contact('Eric Sayer', 1234569999, 2)]))
+    return redirect(url_for('logout'))
+
+
+@app.route('/generate')
+def generate():
+    if 'username' not in session:
+        print("Please sign in.")
+        return redirect(url_for('index'))
+
+    owner = session['username']
+
+    print(mongo.db.contacts.insert_many([
+        db_manager.gen_new_contact(owner, 'John Appleseed', 234567890, -5),
+        db_manager.gen_new_contact(owner, 'Anne Smith', 8003234555, -8),
+        db_manager.gen_new_contact(owner, 'Steven Berg', 9463112232, +4.75),
+        db_manager.gen_new_contact(owner, 'Elora Szeto', 7163831103, 0),
+        db_manager.gen_new_contact(owner, 'Eric Sayer', 1234569999, 2)]))
     return redirect(url_for('dashboard'))
 
 
@@ -143,6 +176,7 @@ def oauth2callback():
 
 @app.route('/logout')
 def logout():
+    session.pop('username', None)
     session.pop('credentials', None)
     session['message'] = "You have logged out."
 
