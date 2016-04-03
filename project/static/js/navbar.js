@@ -1,29 +1,37 @@
-function navbar () {
-	alert("here");
+function showAll () {
+    var elems = document.getElementsByClassName('friend-type-friend');
+        for (var i=0;i<elems.length;i+=1){
+      elems[i].style.display = 'inherit';
+    }
 
-	var input = `<ul class="sidebar-menu" id="nav">
-                    <li class="active">
-                      <a class="" href="index.html">
-                          <span>Person 1</span>
-                          <span class="glyphicon glyphicon-heart" style="color: #462066"></span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <span>Person 2</span>
-                      </a>
-                  </li>
+    var elems = document.getElementsByClassName('friend-type-family');
+        for (var i=0;i<elems.length;i+=1){
+      elems[i].style.display = 'inherit';
+    }
+}
 
-                  <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <span>Person 3</span>
-                      </a>
-                  </li>
-                  </ul>
-                  <div id="plus">
+function showFamily () {
+    var elems = document.getElementsByClassName('friend-type-friend');
+        for (var i=0;i<elems.length;i+=1){
+      elems[i].style.display = 'none';
+    }
 
-                  <a href="#"><div class="round-button" alt="add contact"><span class="glyphicon glyphicon-plus"></span></div></a>
-              </div>`;
+    var elems = document.getElementsByClassName('friend-type-family');
+        for (var i=0;i<elems.length;i+=1){
+      elems[i].style.display = 'inherit';
+    }
+}
 
- document.getElementById("nav").innerHTML = input;
- }
+function showFriends () {
+
+    var elems = document.getElementsByClassName('friend-type-friend');
+        for (var i=0;i<elems.length;i+=1){
+      elems[i].style.display = 'inherit';
+    }
+
+    var elems = document.getElementsByClassName('friend-type-family');
+        for (var i=0;i<elems.length;i+=1){
+      elems[i].style.display = 'none';
+    }
+}
+

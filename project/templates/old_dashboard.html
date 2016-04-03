@@ -1,0 +1,67 @@
+{% extends "base_dashboard.html" %}
+{% block title %}Home{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
+{% endblock %}
+
+{% block content %}
+    <!--sidebar start-->
+    <div id="sidebar">
+        <!-- sidebar menu start-->
+        <div id="sort-tabs">
+            <a href="#" onclick="navbar()">All</a>
+            <a href="#" onclick="navbar()">Friends</a>
+            <a href="#" onclick="navbar()">Family</a>
+        </div>
+
+        <ul class="sidebar-menu" id="nav">
+            <!-- <li class="active">
+                <a class="" href="index.html">
+                    <span>Person 1</span>
+                    <span class="glyphicon glyphicon-heart" style="color: #462066"></span>
+                </a>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;" class="">
+                    <i class="icon_document_alt"></i>
+                    <span>Person 2</span>
+                </a>
+            </li> -->
+
+            {% if contact_dict %}
+                {% for key in contact_dict %}
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_document_alt"></i>
+                            <span>{{ contact_dict[key] }}</span>
+                        </a>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon_document_alt"></i>
+                        <span>You have no contacts.</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+        <div id="plus">
+            <a href="#">
+                <div class="round-button" alt="Add Contact">
+                    <p style="position: relative; top: 50%; transform: translateY(-50%);">+</p>
+                </div>
+            </a>
+        </div>
+        <!-- sidebar menu end-->
+    </div>
+    <!--sidebar end-->
+
+
+{% endblock %}
+
+{% block footer %}
+    <script src="js/navbar.js"></script>
+{% endblock %}
