@@ -217,6 +217,13 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     text-align: right;
 }
 
+#plus-contact {
+    padding-top: 20px;
+    padding-left: 70px;
+    text-align: right;
+}
+}
+
 
 .heart {
     font-size: 50px;
