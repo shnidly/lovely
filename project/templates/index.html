@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_site.html" %}
 {% block title %}Home{% endblock %}
 
 {% block head %}
@@ -6,17 +6,27 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div id="hero">
-                    <h1>Keep your friends. Make better friends.</h1>
-                    <h2 style="font-style: italic">Love.ly</h2>
-                </div>
+	<!-- Preloader -->
+	<div id="preloader">
+		<div id="status"></div>
+	</div>
 
-                <a href="login" role="button" class="btn btn-primary" >Log In</a>
-                <a href="cal" role="button" class="btn btn-danger" >Calendar Test</a>
-            </div>
-        </div>
+	<!-- FullScreen -->
+    <div class="intro-header">
+		<div class="col-xs-12 text-center abcen1">
+            <p></p>
+			<h1 class="heart_home"><span style="color: #f4a3b5; font-size: 200px;" class="glyphicon glyphicon-heart"></span></h1>
+			<h2 class="h1_home wow fadeIn" data-wow-delay="0.6s">love.ly</h2>
+            <h3 class="h3_home wow fadeIn" data-wow-delay="0.6s">Make better friends, not new ones.</h3>
+			<ul class="list-inline intro-social-buttons">
+				<li id="download" ><a href="register" class="btn  btn-lg mybutton_standard wow swing wow fadeIn" data-wow-delay="0.8s"><span class="network-name">Get Started</span></a>
+				</li>
+                <li><a href="login" class="btn  btn-lg mybutton_cyano wow fadeIn" data-wow-delay="1.2s"><span class="network-name">Log In</span></a>
+				</li>
+			</ul>
+		</div>
+        <!-- /.container -->
     </div>
 {% endblock %}
+
+</html>

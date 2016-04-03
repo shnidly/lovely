@@ -27,27 +27,56 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/register')
+def register():
+    return render_template('register.html')
+
+
+@app.route('/register_form', methods=['POST'])
+def register_form():
+    username = request.form['username']
+    email = request.form['email']
+    password = request.form['password']
+
+    print(mongo.db.users.insert_one(db_manager.gen_new_user(username, email, password)))
+
+    session['username'] = username
+    return redirect(url_for('dashboard'))
+
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+
+@app.route('/add')
+def add():
+    return render_template('add.html')
+
+
 @app.route('/dashboard')
 def dashboard():
-    cursor = mongo.db.contacts.find()
+    if 'username' in session:
+        return redirect(url_for('index'))
+
+    cursor = mongo.db.users.find({'username': session['username']})
 
     contact_dict = {}  # List
-
     for contact in cursor:
-        contact_dict[str(contact._id)] = contact.name
+        contact_dict[str(contact['_id'])] = contact['name']
 
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', contact_dict=contact_dict)
 
 
-@app.route('/generate')
+@app.route('/wipedb')
 def generate():
     mongo.db.contacts.remove({})
-    print(mongo.db.contacts.insert_many([
-        db_manager.gen_new_user('John Appleseed', 234567890, -5),
-        db_manager.gen_new_user('Anne Smith', 8003234555, -8),
-        db_manager.gen_new_user('Steven Berg', 9463112232, +4.75),
-        db_manager.gen_new_user('Elora Szeto', 7163831103, 0),
-        db_manager.gen_new_user('Eric Sayer', 1234569999, 2)]))
+    # print(mongo.db.contacts.insert_many([
+    #     db_manager.gen_new_contact('John Appleseed', 234567890, -5),
+    #     db_manager.gen_new_contact('Anne Smith', 8003234555, -8),
+    #     db_manager.gen_new_contact('Steven Berg', 9463112232, +4.75),
+    #     db_manager.gen_new_contact('Elora Szeto', 7163831103, 0),
+    #     db_manager.gen_new_contact('Eric Sayer', 1234569999, 2)]))
     return redirect(url_for('dashboard'))
 
 
@@ -114,7 +143,7 @@ def oauth2callback():
 
 @app.route('/logout')
 def logout():
-    del session['credentials']
+    session.pop('credentials', None)
     session['message'] = "You have logged out."
 
     return redirect(url_for('index'))
