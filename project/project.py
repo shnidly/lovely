@@ -15,7 +15,7 @@ from bson.objectid import ObjectId
 import db_manager
 
 app = Flask(__name__)
-app.config['PREFIX_URI'] = 'mongodb://lovelyuser:lovely@ds015730.mlab.com:15730/heroku_pnqv39rw'
+app.config['MONGO_URI'] = 'mongodb://lovelyuser:lovely@ds015730.mlab.com:15730/heroku_pnqv39rw'
 mongo = PyMongo(app, config_prefix='MONGO')
 
 CLIENT_ID = "788402987571-lkij3nh54tlp35g82h3b94ktj6gl529g.apps.googleusercontent.com"
