@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
-                <div id="sidebar">
+                <div id="sidebar" class=" wow fadeIn" data-wow-delay="0.1s"">
                     <!-- sidebar menu start-->
                     <div id="sort-tabs">
                         <a href="#" onclick="showAll()">All</a>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-xs-6">
                         <img style="display: block; border-radius: 50%; margin: 0 auto 0 auto"
-                             src="../static/img/no.jpg" height="50%" width="50%">
+                             src="../static/img/no.jpg" height="50%" width="50%" class=" wow fadeIn" data-wow-delay="0.6s">
                         <br/>
                     </div>
                     <div class="col-xs-3">
@@ -64,9 +64,9 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <h3>Your location:</h3>
-                                <p>EST GMT -5:00</p>
+                                <h4>EST GMT -5:00</h4>
                                 <h3>Current time:</h3>
-                                <p>00:00</p>
+                                <h4 id="time">00:00</h4>
                             </div>
                         </div>
                     </div>
@@ -100,4 +100,7 @@
 {% block footer %}
     {{ super() }}
     <script src="../static/js/navbar.js"></script>
+    <script>
+document.getElementById("time").innerHTML = Date();
+</script>
 {% endblock %}

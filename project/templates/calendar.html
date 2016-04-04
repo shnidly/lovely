@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_dashboard.html" %}
 {% block title %}Home{% endblock %}
 
 {% block head %}
@@ -6,19 +6,28 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container" style="padding-top: 70px;">
         <div class="row">
-            <div class="col-lg-12">
-                <h2>Calendar Test</h2>
-                <h3>Shows the 10 next upcoming events from Google Calendar.</h3>
-                {% if events %}
-                    {% for event in events %}
-                        {{ event['start'].get('dateTime', event['start'].get('date')) }}: {{ event['summary'] }}<br />
-                    {% endfor %}
-                {% else %}
-                    <p>Nothing received.</p>
-                {% endif %}
+            <div class="col-xs-8 col-xs-offset-2">
+                <div class="panel panel-default">
+                    <div class="container" style="padding: 20px">
+                        <h2>Calendar</h2>
+                        <h3>Your upcoming events</h3>
+                        {% if events %}
+                            {% for event in events %}
+                                <em>{{ event['start'].get('dateTime', event['start'].get('date')) }}: {{ event['summary'] }}</em><br />
+                            {% endfor %}
+                        {% else %}
+                            <p>Nothing received.</p>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block footer %}
+    {{ super() }}
+    <script src="../static/js/navbar.js"></script>
 {% endblock %}

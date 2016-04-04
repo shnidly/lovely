@@ -15,7 +15,8 @@ from bson.objectid import ObjectId
 import db_manager
 
 app = Flask(__name__)
-mongo = PyMongo(app)
+app.config['PREFIX_URI'] = 'mongodb://lovelyuser:lovely@ds015730.mlab.com:15730/heroku_pnqv39rw'
+mongo = PyMongo(app, config_prefix='MONGO')
 
 CLIENT_ID = "788402987571-lkij3nh54tlp35g82h3b94ktj6gl529g.apps.googleusercontent.com"
 CLIENT_SECRET = '0EXqx_OQbJYRw-TavXBftK60'
@@ -242,7 +243,7 @@ def oauth2callback():
         # Convert credentials to json because that is the only way to store it in a session.
         session['credentials'] = credentials.to_json()
 
-        return redirect(url_for('index'))
+        return redirect(url_for('cal'))
 
 
 @app.route('/logout')
